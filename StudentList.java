@@ -9,11 +9,11 @@ public class StudentList {
         if (args[0].equals("a")) {
             System.out.println("Loading data ...");
             try {
-                BufferedReader s = new BufferedReader(
+                BufferedReader bufferreader = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String r = s.readLine();
-                String i[] = r.split(",");
+                String st = bufferreader.readLine();
+                String i[] = st.split(",");
                 for (String j : i) {
                     System.out.println(j);
                 }
@@ -23,12 +23,12 @@ public class StudentList {
         } else if (args[0].equals("r")) {
             System.out.println("Loading data ...");
             try {
-                BufferedReader s = new BufferedReader(
+                BufferedReader bufferreader = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String r = s.readLine();
+                String st = bufferreader.readLine();
                 System.out.println(r);
-                String i[] = r.split(",");
+                String i[] = st.split(",");
                 Random x = new Random();
                 int y = x.nextInt();
                 System.out.println(i[y]);
@@ -38,15 +38,15 @@ public class StudentList {
         } else if (args[0].contains("+")) {
             System.out.println("Loading data ...");
             try {
-                BufferedWriter s = new BufferedWriter(
+                BufferedWriter bufferwriter = new BufferedWriter(
                         new FileWriter("students.txt", true));
                 String t = args[0].substring(1);
                 Date d = new Date();
                 String df = "dd/mm/yyyy-hh:mm:ss a";
                 DateFormat dateFormat = new SimpleDateFormat(df);
                 String fd = dateFormat.format(d);
-                s.write(", " + t + "\nList last updated on " + fd);
-                s.close();
+                bufferwriter.write(", " + t + "\nList last updated on " + fd);
+                bufferwriter.close();
             } catch (Exception e) {
             }
 
@@ -54,17 +54,17 @@ public class StudentList {
         } else if (args[0].contains("?")) {
             System.out.println("Loading data ...");
             try {
-                BufferedReader s = new BufferedReader(
+                BufferedReader bufferreader = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String r = s.readLine();
-                String i[] = r.split(",");
+                String st = bufferreader.readLine();
+                String i[] = st.split(",");
                 boolean done = false;
                 String t = args[0].substring(1);
                 for (int idx = 0; idx < i.length && !done; idx++) {
                     if (i[idx].equals(t)) {
                         System.out.println("We found it!");
-                        done = true;
+                        break;
                     }
                 }
             } catch (Exception e) {
@@ -73,10 +73,10 @@ public class StudentList {
         } else if (args[0].contains("c")) {
             System.out.println("Loading data ...");
             try {
-                BufferedReader s = new BufferedReader(
+                BufferedReader bufferreader = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String D = s.readLine();
+                String D = bufferreader.readLine();
                 char a[] = D.toCharArray();
                 boolean in_word = false;
                 int count = 0;
@@ -95,6 +95,7 @@ public class StudentList {
             }
             System.out.println("Data Loaded.");
         }
+        //System.out.println("Invalid number");
     }
 
 }
